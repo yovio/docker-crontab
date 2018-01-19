@@ -19,7 +19,7 @@ case $1 in
     ;;
 esac
 
-# adding additional cron jobs passed by arguments
+# adding additional cron jobs passed by arguments 
 # every job must be a single quoted string and have standard crontab format,
 # e.g.: start-cron --user user "0 \* \* \* \* env >> /var/log/cron.log 2>&1"
 { for cron_job in "$@"; do echo -e ${cron_job}; done } \
@@ -34,7 +34,7 @@ crond -L /var/log/cron.log -c ${CRONTABS_DIR:-$default_crontabs_dir}
 trap "echo \"stopping cron\"; kill \$!; exit" SIGINT SIGTERM
 
 # start "daemon"
-while true
+while true 
 do
     cat /var/log/cron.log & wait $!
 done
